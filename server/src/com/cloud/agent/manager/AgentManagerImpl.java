@@ -874,7 +874,11 @@ public class AgentManagerImpl extends ManagerBase implements AgentManager, Handl
             s_logger.debug("Deregistering link for " + hostId + " with state " + nextStatus);
         }
 
-        removeAgent(attache, nextStatus);
+        //For KVM, if removeagent is false, don't remove the agent in agentmap, pingtimeout will pick it up.
+        if (host.getHypervisorType() != HypervisorType.KVM || removeAgent) {
+            removeAgent(attache, nextStatus);
+        }
+
         //update the DB
         if (host != null && transitState) {
             disconnectAgent(host, event, _nodeId);
