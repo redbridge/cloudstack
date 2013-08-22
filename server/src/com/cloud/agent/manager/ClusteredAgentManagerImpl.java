@@ -276,19 +276,19 @@ public class ClusteredAgentManagerImpl extends AgentManagerImpl implements Clust
     }
 
     @Override
-    protected boolean handleDisconnectWithoutInvestigation(AgentAttache attache, Status.Event event, boolean transitState, boolean removeAgent) {
-        return handleDisconnect(attache, event, false, true, removeAgent);
+    protected boolean handleDisconnectWithoutInvestigation(AgentAttache attache, Status.Event event, boolean transitState) {
+        return handleDisconnect(attache, event, false, true);
     }
 
     @Override
     protected boolean handleDisconnectWithInvestigation(AgentAttache attache, Status.Event event) {
-        return handleDisconnect(attache, event, true, true, true);
+        return handleDisconnect(attache, event, true, true);
     }
 
-    protected boolean handleDisconnect(AgentAttache agent, Status.Event event, boolean investigate, boolean broadcast, boolean removeAgent) {
+    protected boolean handleDisconnect(AgentAttache agent, Status.Event event, boolean investigate, boolean broadcast) {
         boolean res;
         if (!investigate) {
-            res = super.handleDisconnectWithoutInvestigation(agent, event, true, removeAgent);
+            res = super.handleDisconnectWithoutInvestigation(agent, event, true);
         } else {
             res = super.handleDisconnectWithInvestigation(agent, event);
         }
@@ -331,7 +331,7 @@ public class ClusteredAgentManagerImpl extends AgentManagerImpl implements Clust
                     return true;
                 }
 
-                return super.handleDisconnectWithoutInvestigation(attache, Event.AgentDisconnected, false, true);
+                return super.handleDisconnectWithoutInvestigation(attache, Event.AgentDisconnected, false);
             }
 
             return true;
@@ -982,7 +982,7 @@ public class ClusteredAgentManagerImpl extends AgentManagerImpl implements Clust
 
                 AgentAttache attache = findAttache(hostId);
                 if (attache != null) {
-                    result = handleDisconnect(attache, Event.AgentDisconnected, false, false, true);
+                    result = handleDisconnect(attache, Event.AgentDisconnected, false, false);
                 }
 
                 if (result) {
@@ -1058,7 +1058,7 @@ public class ClusteredAgentManagerImpl extends AgentManagerImpl implements Clust
         try {
             s_logger.debug("Management server " + _nodeId + " failed to rebalance agent " + hostId);
             _hostTransferDao.completeAgentTransfer(hostId);
-            handleDisconnectWithoutInvestigation(findAttache(hostId), Event.RebalanceFailed, true, true);
+            handleDisconnectWithoutInvestigation(findAttache(hostId), Event.RebalanceFailed, true);
         } catch (Exception ex) {
             s_logger.warn("Failed to reconnect host id=" + hostId + " as a part of failed rebalance task cleanup");
         }
@@ -1075,7 +1075,7 @@ public class ClusteredAgentManagerImpl extends AgentManagerImpl implements Clust
         synchronized (_agents) {
             ClusteredDirectAgentAttache attache = (ClusteredDirectAgentAttache)_agents.get(hostId);
             if (attache != null && attache.getQueueSize() == 0 && attache.getNonRecurringListenersSize() == 0) {
-            	handleDisconnectWithoutInvestigation(attache, Event.StartAgentRebalance, true, true);
+            	handleDisconnectWithoutInvestigation(attache, Event.StartAgentRebalance, true);
                 ClusteredAgentAttache forwardAttache = (ClusteredAgentAttache)createAttache(hostId);
                 if (forwardAttache == null) {
                     s_logger.warn("Unable to create a forward attache for the host " + hostId + " as a part of rebalance process");
