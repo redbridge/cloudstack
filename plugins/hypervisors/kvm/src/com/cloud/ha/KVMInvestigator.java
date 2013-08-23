@@ -64,9 +64,14 @@ public class KVMInvestigator extends AdapterBase implements Investigator {
             if (neighbor.getId() == agent.getId() || neighbor.getHypervisorType() != Hypervisor.HypervisorType.KVM) {
                 continue;
             }
-            Answer answer = _agentMgr.easySend(neighbor.getId(), cmd);
-
-            return answer.getResult() ? Status.Down : Status.Up;
+            if (answer != null && answer.getResult()) {
+                CheckOnHostAnswer ans = (CheckOnHostAnswer)answer;
+                if (!ans.isDetermined()) {
+                    s_logger.debug("Host " + neighbor + " couldn't determine the status of " + agent);
+                    continue;
+                }
+                return ans.isAlive() ? Status.Up : Status.Down;
+            }
 
         }
 
