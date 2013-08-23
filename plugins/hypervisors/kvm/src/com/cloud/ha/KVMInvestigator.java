@@ -64,6 +64,7 @@ public class KVMInvestigator extends AdapterBase implements Investigator {
             if (neighbor.getId() == agent.getId() || neighbor.getHypervisorType() != Hypervisor.HypervisorType.KVM) {
                 continue;
             }
+            Answer answer = _agentMgr.easySend(neighbor.getId(), cmd);
             if (answer != null && answer.getResult()) {
                 CheckOnHostAnswer ans = (CheckOnHostAnswer)answer;
                 if (!ans.isDetermined()) {
