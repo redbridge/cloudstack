@@ -23,6 +23,7 @@ import com.cloud.agent.api.Answer;
 import com.cloud.agent.api.CheckOnHostAnswer;
 import com.cloud.agent.api.CheckOnHostCommand;
 import com.cloud.host.HostVO;
+import com.cloud.host.Host;
 import com.cloud.host.Status;
 import com.cloud.host.dao.HostDao;
 import com.cloud.hypervisor.Hypervisor.HypervisorType;
@@ -57,7 +58,7 @@ public class KVMInvestigator extends AdapterBase implements Investigator {
     @Override
     public Status isAgentAlive(HostVO agent) {
         s_logger.debug("Checking agent " + agent);
-        if (agent.getHypervisorType() != HypervisorType.KVM) {
+        if (agent.getHypervisorType() != HypervisorType.KVM ) {
             s_logger.debug("Host is not a KVM host");
             return null;
         }
