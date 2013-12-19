@@ -21,12 +21,13 @@ under the License.
 version="1.0">
 <xsl:output method="html" doctype-public="-//W3C//DTD HTML 1.0 Transitional//EN"/>
 <xsl:template match="/">
-<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<html class="aui" xmlns="http://www.w3.org/1999/xhtml"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel= "stylesheet" href="../includes/main.css" type="text/css" />
+<link rel= "stylesheet" href="../includes/aui.css" type="text/css" />
 <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
 
-<title>Apache CloudStack | The Power Behind Your Cloud</title>
+<title>RedBride Cloud API</title>
 </head>
 
 <body>
@@ -38,13 +39,14 @@ version="1.0">
         
         <div id="main_master">
             <div id="inside_header">
-
-                <div class="header_top">
-                    <a class="cloud_logo" href="http://cloudstack.org"></a>
-                    <div class="mainemenu_panel">
-                        
+                    <img alt="" src="../images/Large_Cloud.png" style="width: 227px; height: 137px; float:left;" />
+                    <div style="font-size: 35px; font-weight: 700; font-family: 'Open Sans'; color: #0af; margin-top: 0px; margin-bottom: 25px;">
+                        RedBridge
+                    </div>  
+                    <div style="font-size: 35px; font-weight: 300; font-family: 'Open Sans' ;; color: #0af; margin-bottom: 0px;">
+                        Compute
                     </div>
-                </div>
+
             
             </div>
 
@@ -57,7 +59,6 @@ version="1.0">
 				<xsl:for-each select="command/command">
                            		<!-- Modify this line for the release version -->
                            		<span>
-									Apache CloudStack v4.1.0 User API Reference
 								</span>
 								<p></p>
                                 <h1><xsl:value-of select="name"/></h1>
