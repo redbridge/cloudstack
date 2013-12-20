@@ -66,13 +66,6 @@ version="1.0">
                 <div class="inside_apileftpanel">
                 	<div class="inside_contentpanel" style="width:930px;">
               		  	<!-- Modify this line for the release version -->
-                        <div class="apiannouncement_box">
-                        	<div class="apiannouncement_contentarea">
-                                <h3>Using the API</h3>
-                                <p>For information about how the APIs work, and tips on how to use them, see the
-                                   <a href="http://docs.cloud.com/CloudStack_Documentation/Developer's_Guide%3A_CloudStack">Developer's Guide</a>.</p>
-       					 	</div>
-       					 </div>
                          
                          <div class="api_leftsections">
                       			<h3>%API_HEADER%</h3>
