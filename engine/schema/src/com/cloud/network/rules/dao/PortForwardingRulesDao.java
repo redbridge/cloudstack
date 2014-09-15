@@ -43,5 +43,11 @@ public interface PortForwardingRulesDao extends GenericDao<PortForwardingRuleVO,
     List<PortForwardingRuleVO> listByAccount(long accountId);
 
     List<PortForwardingRuleVO> listByDestIpAddr(String ip4Address);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8c671c4... CLOUDSTACK-7548:removeNICFromVM should check for networkId while checking for PF rules on the nic
     PortForwardingRuleVO findByIdAndIp(long id, String secondaryIp);
+
+    List<PortForwardingRuleVO> listByNetworkAndDestIpAddr(String ip4Address, long networkId);
 }
