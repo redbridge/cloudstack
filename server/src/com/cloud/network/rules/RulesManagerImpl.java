@@ -1464,7 +1464,6 @@ public class RulesManagerImpl extends ManagerBase implements RulesManager, Rules
     }
     
     @Override
-    @Override
     public List<FirewallRuleVO> listAssociatedRulesForGuestNic(Nic nic) {
         s_logger.debug("Checking if PF/StaticNat/LoadBalancer rules are configured for nic " + nic.getId());
         List<FirewallRuleVO> result = new ArrayList<FirewallRuleVO>();
