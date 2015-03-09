@@ -687,7 +687,6 @@ public class LibvirtVMDef {
 
             if ((_deviceType != deviceType.CDROM) &&
                 (s_libvirtVersion >= 9008) &&
-                (s_qemuVersion >= 1001000) &&
                 (((_bytesReadRate != null) && (_bytesReadRate > 0)) || ((_bytesWriteRate != null) && (_bytesWriteRate > 0)) ||
                     ((_iopsReadRate != null) && (_iopsReadRate > 0)) || ((_iopsWriteRate != null) && (_iopsWriteRate > 0)))) { // not CDROM, from libvirt 0.9.8 and QEMU 1.1.0
                 diskBuilder.append("<iotune>\n");
